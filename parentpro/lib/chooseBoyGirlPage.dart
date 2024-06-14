@@ -2,7 +2,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:parentpro/singletonChoice.dart';
 
+import 'homePage.dart';
 import 'main.dart';
 
 class chooseGirlBoy extends StatefulWidget {
@@ -18,6 +20,14 @@ class chooseGirlBoy extends StatefulWidget {
 
 class _chooseGirlBoy extends State<chooseGirlBoy> {
 
+  void choiceMade(bool isBoy){
+    choiceOfChildBoy = isBoy;
+    Navigator.push(
+      context as BuildContext,
+      MaterialPageRoute(builder: (context) => HomePage()),
+    );
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +66,7 @@ class _chooseGirlBoy extends State<chooseGirlBoy> {
                   child: FadeInUp(
                     delay: Duration(milliseconds: 300),
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {choiceMade(true);},
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white,
                         backgroundColor: Colors.blue, // text color
@@ -78,7 +88,7 @@ class _chooseGirlBoy extends State<chooseGirlBoy> {
                   child: FadeInUp(
                     delay: Duration(milliseconds: 600),
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {choiceMade(false);},
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white,
                         backgroundColor: Colors.pink, // text color

@@ -53,6 +53,17 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  assets:
+    - assets/tipseducation.png
+    - assets/education.webp
+    - assets/tipsImage.jpeg
+    - assets/nutrition.webp
+    - assets/games.jpeg
+    - assets/technologie.jpeg
+    - assets/behavor.jpeg
+    - assets/safety.jpeg
+    - assets/sleep.webp
+
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
