@@ -1,10 +1,13 @@
 
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:parentpro/drawerWidget.dart';
 import 'package:parentpro/singletonChoice.dart';
 
+import 'chartWeightWidget.dart';
+import 'detailChildEducation.dart';
 import 'main.dart';
 
 class HomePage extends StatefulWidget {
@@ -27,12 +30,21 @@ class _HomePage extends State<HomePage> {
     super.initState();
     isBoy = choiceOfChildBoy;
   }
+  List<BabyWeightData> babyWeightData = [
+    BabyWeightData(DateTime(2023, 1, 1), 7.5),
+    BabyWeightData(DateTime(2023, 2, 1), 7.8),
+    BabyWeightData(DateTime(2023, 3, 1), 8.1),
+    BabyWeightData(DateTime(2023, 4, 1), 8.4),
+    BabyWeightData(DateTime(2023, 5, 1), 8.6),
+    // Add more data points as needed
+  ];
 
   final List<Map<String, String>> items = [
     {
       'title': 'Child Education',
       'description': 'Tips and techniques for educating your child effectively.',
-      'image': 'assets/education.webp'
+      'image': 'assets/education.webp',
+      'path': 'ChildEducationDetailPage'
     },
     {
       'title': 'Parenting Tips',
@@ -84,10 +96,26 @@ class _HomePage extends State<HomePage> {
         backgroundColor: isBoy ? Colors.blue : Colors.pink,
       ),
        drawer: AppDrawer(isBoy: isBoy),
-      body:
-          Column(
-            children: [
-              Text("heloo"),
+         body: Column(
+           children: [
+             // Container(
+             //   height: 200,
+             //   margin: EdgeInsets.all(10),
+             //   padding: EdgeInsets.all(10),
+             //   decoration: BoxDecoration(
+             //     color: Colors.white,
+             //     borderRadius: BorderRadius.circular(10),
+             //     boxShadow: [
+             //       BoxShadow(
+             //         color: Colors.grey.withOpacity(0.5),
+             //         spreadRadius: 3,
+             //         blurRadius: 7,
+             //         offset: Offset(0, 3), // changes position of shadow
+             //       ),
+             //     ],
+             //   ),
+             //   child: WeightChart(data: babyWeightData,), // Display WeightChart widget here
+             // ),
               Expanded(
                 child:
 
@@ -104,6 +132,14 @@ class _HomePage extends State<HomePage> {
                             width: 100,
                             height: 100,
                           ),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailPage(choix: items[index]['title']!,)
+
+                                ));
+                          },
                           title: Text(
                             items[index]['title']!,
                             style: TextStyle(
