@@ -2,6 +2,9 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:parentpro/singletonChoice.dart';
 
+import 'listsTechniques.dart';
+
+
 class DetailPage extends StatefulWidget {
   const DetailPage({super.key, required this.choix});
   final String choix;
@@ -11,57 +14,47 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPage extends State<DetailPage> {
-
-  List<String> technique = [];
+  List<Technique> techniqueList = [];
   String title = "";
-  String descritpion = "";
+  String description = "";
 
   @override
   void initState() {
     super.initState();
-   if(widget.choix == "Child Education"){
-     technique = techniques;
-     title = "Child Education";
-     descritpion = "Tips and techniques for educating your child";
-   }else if(widget.choix == "Nutrition Advice"){
-     technique = techniques;
-     title = "Nutrition Advice";
-     descritpion = "Tips and techniques for educating your child";
-   }else if(widget.choix == "Activities and Games"){
-     technique = techniques;
-     title = "Activities and Games";
-     descritpion = "Tips and techniques for educating your child";
-   }else if(widget.choix == "Tech and Gadgets"){
-     technique = techniques;
-     title = "Tech and Gadgets";
-     descritpion = "Tips and techniques for educating your child";
-   }else if(widget.choix == "Behavior Management"){
-     technique = techniques;
-     title = "Behavior Management";
-     descritpion = "Tips and techniques for educating your child";
-   }else if(widget.choix == "Health and Safety"){
-     technique = techniques;
-     title = "Health and Safety";
-     descritpion = "Tips and techniques for educating your child";
-   }else if(widget.choix == "Sleep Training"){
-     technique = techniques;
-     title = "Sleep Training";
-     descritpion = "Tips and techniques for educating your child";
-   }
+    if (widget.choix == "Child Education") {
+      techniqueList = techniquesEducation;
+      title = "Child Education";
+      description = "Tips and techniques for educating your child";
+    }else if (widget.choix == "Parenting Tips") {
+      techniqueList = techniquesParenting;
+      title = "Parenting Tips";
+      description = "Tips and techniques for educating your child";
+    } else if (widget.choix == "Nutrition Advice") {
+      techniqueList = dietTechniques;
+      title = "Nutrition Advice";
+      description = "Tips and techniques for educating your child";
+    } else if (widget.choix == "Activities and Games") {
+      techniqueList = activityTechniques;
+      title = "Activities and Games";
+      description = "Tips and techniques for educating your child";
+    } else if (widget.choix == "Tech and Gadgets") {
+      techniqueList = techAssistanceTechniques;
+      title = "Tech and Gadgets";
+      description = "Tips and techniques for educating your child";
+    } else if (widget.choix == "Behavior Management") {
+      techniqueList = behaviorManagementTechniques;
+      title = "Behavior Management";
+      description = "Tips and techniques for educating your child";
+    } else if (widget.choix == "Health and Safety") {
+      techniqueList = healthAndSafetyTechniques;
+      title = "Health and Safety";
+      description = "Tips and techniques for educating your child";
+    } else if (widget.choix == "Sleep Training") {
+      techniqueList = sleepTrainingTechniques;
+      title = "Sleep Training";
+      description = "Tips and techniques for educating your child";
+    }
   }
-
-  List<String> techniques = [
-    "Positive reinforcement: Rewarding good behavior to encourage repetition.",
-    "Setting boundaries: Clearly defining acceptable behavior and consequences.",
-    "Active listening: Paying full attention to understand your child's feelings and needs.",
-    "Consistency: Maintaining a predictable environment and responses.",
-    "Time-outs: Providing a brief break to calm down and reflect on behavior.",
-    "Modeling behavior: Demonstrating desired behaviors for children to emulate.",
-    "Effective communication: Using clear, age-appropriate language to explain expectations.",
-    "Empathy: Acknowledging and validating your child's emotions.",
-    "Problem-solving: Collaboratively finding solutions to conflicts or challenges.",
-    "Routine: Establishing consistent daily schedules for meals, sleep, and activities.",
-  ];
 
 
   @override
@@ -79,7 +72,7 @@ class _DetailPage extends State<DetailPage> {
           children: [
             FadeIn(
               child: Text(
-                descritpion,
+                description,
                 style: TextStyle(
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold,
@@ -96,17 +89,47 @@ class _DetailPage extends State<DetailPage> {
               ),
             ),
             SizedBox(height: 20.0),
-            // Example of showing techniques (you can replace this with your actual technique widgets)
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: technique.length,
-              itemBuilder: (context, index) {
-                return FadeInLeft(
-                  child: ListTile(
-                    title: Text(technique[index]),
+            Column(
+              children: techniqueList.map((tech) {
+                return FadeInRightBig(
+                  child: Container(
+                    margin: EdgeInsets.symmetric(vertical: 5.0),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0), // Customize your border radius here
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 1,
+                          blurRadius: 3,
+                          offset: Offset(0, 2), // changes position of shadow
+                        ),
+                      ],
+                    ),
+                    child: ListTile(
+                      title: RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: tech.title,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
+                            TextSpan(
+                              text: ': ${tech.description}',
+                              style: TextStyle(
+                                color: Colors.black,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
                 );
-              },
+              }).toList(),
             ),
           ],
         ),

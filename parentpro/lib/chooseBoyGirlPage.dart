@@ -20,8 +20,22 @@ class chooseGirlBoy extends StatefulWidget {
 
 class _chooseGirlBoy extends State<chooseGirlBoy> {
 
+  @override
+  void initState() {
+    super.initState();
+    if(dejaRepondu){
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => HomePage(),)
+
+          );
+    }
+  }
+
   void choiceMade(bool isBoy){
     choiceOfChildBoy = isBoy;
+    dejaRepondu = true;
     Navigator.push(
       context as BuildContext,
       MaterialPageRoute(builder: (context) => HomePage()),
