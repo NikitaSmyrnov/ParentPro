@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:parentpro/singletonChoice.dart';
 
 class DetailPage extends StatefulWidget {
   const DetailPage({super.key, required this.choix});
@@ -22,6 +23,30 @@ class _DetailPage extends State<DetailPage> {
      technique = techniques;
      title = "Child Education";
      descritpion = "Tips and techniques for educating your child";
+   }else if(widget.choix == "Nutrition Advice"){
+     technique = techniques;
+     title = "Nutrition Advice";
+     descritpion = "Tips and techniques for educating your child";
+   }else if(widget.choix == "Activities and Games"){
+     technique = techniques;
+     title = "Activities and Games";
+     descritpion = "Tips and techniques for educating your child";
+   }else if(widget.choix == "Tech and Gadgets"){
+     technique = techniques;
+     title = "Tech and Gadgets";
+     descritpion = "Tips and techniques for educating your child";
+   }else if(widget.choix == "Behavior Management"){
+     technique = techniques;
+     title = "Behavior Management";
+     descritpion = "Tips and techniques for educating your child";
+   }else if(widget.choix == "Health and Safety"){
+     technique = techniques;
+     title = "Health and Safety";
+     descritpion = "Tips and techniques for educating your child";
+   }else if(widget.choix == "Sleep Training"){
+     technique = techniques;
+     title = "Sleep Training";
+     descritpion = "Tips and techniques for educating your child";
    }
   }
 
@@ -42,8 +67,10 @@ class _DetailPage extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: choiceOfChildBoy ? Colors.blue.shade100 : Colors.pink.shade100,
       appBar: AppBar(
         title: Text(title),
+        backgroundColor: choiceOfChildBoy ? Colors.blue : Colors.pink,
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20.0),
